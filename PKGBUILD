@@ -1,21 +1,22 @@
-# $Id$
 # Maintainer: BlackEagle <ike.devolder@gmail.com>>
 
 pkgname=kodi-addon-screensaver-biogenesis
 epoch=1
-pkgver=1.1.0
+pkgver=2.1.0
+_codename=Leia
 pkgrel=1
 pkgdesc="BioGenesis screensaver for Kodi"
 arch=('x86_64')
-url='https://github.com/notspiff/screensaver.biogenesis'
+url='https://github.com/xbmc/screensaver.biogenesis'
 license=('GPL')
 groups=('kodi-addons' 'kodi-addons-screensaver')
 depends=('kodi')
 makedepends=('cmake' 'kodi-dev')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/notspiff/screensaver.biogenesis/archive/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/xbmc/screensaver.biogenesis/archive/$pkgver-$_codename.tar.gz")
+sha512sums=('17f51c7f4fde44862b45caeafa5fefa315714f9e646355a772285ee455321189425100a45a3f743a0ef94bccb6106371865afeac2a2edd411ce6f392bc06c571')
 
 build() {
-    cd "screensaver.biogenesis-$pkgver"
+    cd "screensaver.biogenesis-$pkgver-$_codename"
     cmake \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_BUILD_TYPE=Release \
@@ -25,8 +26,7 @@ build() {
 }
 
 package() {
-    cd "screensaver.biogenesis-$pkgver"
+    cd "screensaver.biogenesis-$pkgver-$_codename"
 	make DESTDIR="$pkgdir/" install
 }
 
-sha512sums=('db970113a44d87ccf44c520d5d6adfc640617ba9fd01f0b0114129d1901b2e853804871d9f5377a0869034b2379663922069545f3a7bd38f98b2d9894013c5ae')
