@@ -4,7 +4,7 @@ pkgname=kodi-addon-screensaver-biogenesis
 epoch=1
 pkgver=2.1.0
 _codename=Leia
-pkgrel=6
+pkgrel=7
 pkgdesc="BioGenesis screensaver for Kodi"
 arch=('x86_64')
 url='https://github.com/xbmc/screensaver.biogenesis'
@@ -21,12 +21,13 @@ build() {
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_SHARED_LIBS=1 \
-        -DUSE_LTO=1
+        -DUSE_LTO=1 \
+        .
     make
 }
 
 package() {
     cd "screensaver.biogenesis-$pkgver-$_codename"
-	make DESTDIR="$pkgdir/" install
+    make DESTDIR="$pkgdir/" install
 }
 
